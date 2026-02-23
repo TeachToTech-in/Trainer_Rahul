@@ -30,6 +30,7 @@ void insertValues(Node *temp)
     temp->next = NULL;
 }
 Node *createList(int n)
+
 {
     Node *start, *temp;
     int i = 1;
@@ -54,6 +55,27 @@ Node *createList(int n)
     return start;
 }
 
+Node *insertBeg(Node *start)
+{
+    Node *temp;
+    temp = (Node *)malloc(sizeof(Node));
+    insertValues(temp);
+    temp->next = start;
+    start = temp;
+    return start;
+}
+void insertLast(Node *start)
+{
+    Node *temp, *last;
+    temp = (Node *)malloc(sizeof(Node));
+    insertValues(temp);
+    last = start;
+    while (last->next != NULL)
+    {
+        last = last->next;
+    }
+    last->next = temp;
+}
 int main()
 {
     Node *start;
@@ -62,4 +84,9 @@ int main()
     scanf("%d", &n);
     start = createList(n);
     printList(start);
+    start = insertBeg(start);
+    printList(start);
+    insertLast(start);
+    printList(start);
+    return 0;
 }
